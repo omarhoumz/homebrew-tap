@@ -53,6 +53,9 @@ class Portwho < Formula
     bin.install "portwho" if OS.linux? && Hardware::CPU.intel?
 
     install_binary_aliases!
+    # Added by .github/workflows/add-completions.yml because the
+    # formula generator has no hook for installing completions.
+    generate_completions_from_executable(bin/"portwho", "completions")
 
     # Homebrew will automatically install these, so we don't need to do that
     doc_files = Dir["README.*", "readme.*", "LICENSE", "LICENSE.*", "CHANGELOG.*"]
