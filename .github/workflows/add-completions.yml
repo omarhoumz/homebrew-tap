@@ -1,0 +1,43 @@
+# Adds shell-completion installation to formulae pushed here by dist.
+#
+# Why this exists as a workflow instead of an edit to the formula: dist renders
+# every formula from a fixed template on each release and force-pushes the
+# result, so a hand-edit survives exactly until the next version. Its Homebrew
+# publisher config has no template override and no post-install hook — the
+# template drops non-doc files into pkgshare and stops there, which is why
+# `brew install` yields a working binary with dead completion scripts sitting
+# unused in share/<name>/completions.
+#
+# So the patch re-applies itself: dist pushes a formula, this reacts to that
+# push and adds the missing line. It cannot loop, because pushes made with
+# GITHUB_TOKEN do not trigger workflows, and the edit is idempotent regardless.
+name: add-completions
+
+on:
+  push:
+    branches: [main]
+    paths: ["Formula/**.rb"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Insert completion generation into each formula
+        run: python3 .github/patch-formula.py > changed.txt
+
+      - name: Commit
+        run: |
+          if [ ! -s changed.txt ]; then rm -f changed.txt; echo "nothing to patch"; exit 0; fi
+          cat changed.txt
+          rm -f changed.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Formula
+          git commit -m "Install shell completions in the generated formula"
+          git push
