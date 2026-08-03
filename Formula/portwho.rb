@@ -1,25 +1,25 @@
 class Portwho < Formula
   desc "See which project owns each localhost port — project name, worktree, docker container, and a clickable URL."
   homepage "https://github.com/omarhoumz/portwho"
-  version "0.1.1"
+  version "0.1.2"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/omarhoumz/portwho/releases/download/v0.1.1/portwho-aarch64-apple-darwin.tar.xz"
-      sha256 "983af62107951cdea33091a0e6050560f96c6c188019eaa9526f702b9d0c846e"
+      url "https://github.com/omarhoumz/portwho/releases/download/v0.1.2/portwho-aarch64-apple-darwin.tar.xz"
+      sha256 "34c2ed36689579282492130e145f4e541b3686595bb1d1b1165e6e3e97c4023e"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/omarhoumz/portwho/releases/download/v0.1.1/portwho-x86_64-apple-darwin.tar.xz"
-      sha256 "beabcc08ede5c700bbfdc663f0856ef96193f7f1b0dcf4a9ebd77ecb6dcfdc9f"
+      url "https://github.com/omarhoumz/portwho/releases/download/v0.1.2/portwho-x86_64-apple-darwin.tar.xz"
+      sha256 "4bc4dfbd87edb5c6c5a528180fdb3e163d8de4b7a4302b42b56dce82915dbf5b"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/omarhoumz/portwho/releases/download/v0.1.1/portwho-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "8f408f0671327dd33ad463eaa4c40b69e2c7fc5210ad02d5fcbd36d6a1661165"
+      url "https://github.com/omarhoumz/portwho/releases/download/v0.1.2/portwho-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "10d5209b2024552b45621a257f7bde55d26717debbd02ae942283bf5114a1c61"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/omarhoumz/portwho/releases/download/v0.1.1/portwho-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "45bb37215199af30be1772a0a3c8418b151caf0ad7b910e710c3aad4e05836a7"
+      url "https://github.com/omarhoumz/portwho/releases/download/v0.1.2/portwho-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "3733bbb406ca3f16f6aeaf9a5562f40aa377283135c32fc0509412a907aa85d9"
     end
   end
   license "MIT"
@@ -53,9 +53,6 @@ class Portwho < Formula
     bin.install "portwho" if OS.linux? && Hardware::CPU.intel?
 
     install_binary_aliases!
-    # Added by .github/workflows/add-completions.yml because the
-    # formula generator has no hook for installing completions.
-    generate_completions_from_executable(bin/"portwho", "completions")
 
     # Homebrew will automatically install these, so we don't need to do that
     doc_files = Dir["README.*", "readme.*", "LICENSE", "LICENSE.*", "CHANGELOG.*"]
