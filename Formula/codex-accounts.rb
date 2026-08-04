@@ -5,8 +5,8 @@ class CodexAccounts < Formula
   # /archive/refs/tags tarball: the sha256 below is computed from the
   # asset, and the two differ byte for byte. Pointing at the wrong one
   # fails every brew install with a checksum mismatch.
-  url "https://github.com/omarhoumz/codex-accounts/releases/download/v0.1.3/codex-accounts-0.1.3.tar.gz"
-  sha256 "e2c2e71b9d8286c9d59302ecb4750a8a6bf56d2c1f27f8c9c5d0169eefa3be63"
+  url "https://github.com/omarhoumz/codex-accounts/releases/download/v0.1.4/codex-accounts-0.1.4.tar.gz"
+  sha256 "704e973a29d54b1145e4ff94b7eb92fd15c7f4c1a56910276ee4d4ea1a726b8f"
   license "MIT"
 
   def install
