@@ -1,10 +1,12 @@
 class CodexAccounts < Formula
   desc "Manage multiple OpenAI Codex CLI accounts"
   homepage "https://github.com/omarhoumz/codex-accounts"
-  # The release asset built by git archive, not GitHub's auto-generated source
-  # archive: the workflow hashes the asset, and the two differ byte for byte.
-  url "https://github.com/omarhoumz/codex-accounts/releases/download/v0.1.0/codex-accounts-0.1.0.tar.gz"
-  sha256 "679a2efb6ba93c6fc4d87526f8b81e0defa1c88bace981f03c66611a677ea426"
+  # The release asset built by git archive, NOT GitHub's auto-generated
+  # /archive/refs/tags tarball: the sha256 below is computed from the
+  # asset, and the two differ byte for byte. Pointing at the wrong one
+  # fails every brew install with a checksum mismatch.
+  url "https://github.com/omarhoumz/codex-accounts/releases/download/v0.1.1/codex-accounts-0.1.1.tar.gz"
+  sha256 "cc3e39afa9b37f2bd08d8b9b32f0ad47411a3909093804f738a53ca99f3eb2e4"
   license "MIT"
 
   def install
