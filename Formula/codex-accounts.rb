@@ -5,18 +5,24 @@ class CodexAccounts < Formula
   # /archive/refs/tags tarball: the sha256 below is computed from the
   # asset, and the two differ byte for byte. Pointing at the wrong one
   # fails every brew install with a checksum mismatch.
-  url "https://github.com/omarhoumz/codex-accounts/releases/download/v0.1.1/codex-accounts-0.1.1.tar.gz"
-  sha256 "cc3e39afa9b37f2bd08d8b9b32f0ad47411a3909093804f738a53ca99f3eb2e4"
+  url "https://github.com/omarhoumz/codex-accounts/releases/download/v0.1.2/codex-accounts-0.1.2.tar.gz"
+  sha256 "e902f622e1a7eba0d3dc94b841d766871344ee5d037fbd0df08bdda13a99f499"
   license "MIT"
 
   def install
     libexec.install "lib"
     libexec.install "shell"
+    libexec.install "completions"
     libexec.install "bin" => "tools"
     # The scripts source ../lib/common.sh relative to their own real
     # path, so the bin/ and lib/ pair has to stay adjacent in libexec.
+    bin.install_symlink libexec/"tools/codex-accounts"
     bin.install_symlink libexec/"tools/codex-switch"
     bin.install_symlink libexec/"tools/codex-run"
+
+    # One completion file serves all three commands.
+    zsh_completion.install libexec/"completions/_codex-accounts" => "_codex-accounts"
+    bash_completion.install libexec/"completions/codex-accounts.bash" => "codex-accounts"
   end
 
   def caveats
@@ -37,9 +43,13 @@ class CodexAccounts < Formula
   end
 
   test do
+    assert_match "codex-accounts", shell_output("#{bin}/codex-accounts --version")
     assert_match "codex-switch", shell_output("#{bin}/codex-switch --version")
     assert_match "codex-run", shell_output("#{bin}/codex-run --version")
     assert_match "no accounts saved yet",
                  shell_output("CODEX_ACCOUNTS_DIR=#{testpath}/acc #{bin}/codex-switch list")
+    # The umbrella must reach codex-run, which lives beside it in libexec.
+    assert_match "run <account>",
+                 shell_output("#{bin}/codex-accounts run 2>&1", 1)
   end
 end
