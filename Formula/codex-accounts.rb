@@ -1,7 +1,9 @@
 class CodexAccounts < Formula
   desc "Manage multiple OpenAI Codex CLI accounts"
   homepage "https://github.com/omarhoumz/codex-accounts"
-  url "https://github.com/omarhoumz/codex-accounts/archive/refs/tags/v0.1.0.tar.gz"
+  # The release asset built by git archive, not GitHub's auto-generated source
+  # archive: the workflow hashes the asset, and the two differ byte for byte.
+  url "https://github.com/omarhoumz/codex-accounts/releases/download/v0.1.0/codex-accounts-0.1.0.tar.gz"
   sha256 "679a2efb6ba93c6fc4d87526f8b81e0defa1c88bace981f03c66611a677ea426"
   license "MIT"
 
