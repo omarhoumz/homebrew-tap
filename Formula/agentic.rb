@@ -4,8 +4,8 @@ class Agentic < Formula
   # The release asset built by git archive, NOT GitHub's auto-generated
   # /archive/refs/tags tarball: the sha256 below is computed from the
   # asset, and the two differ byte for byte.
-  url "https://github.com/omarhoumz/agentic/releases/download/v0.1.0/agentic-0.1.0.tar.gz"
-  sha256 "1d9abb63ab9e6f34f57968f6a9b8600ed634b7ced03cd2ae3280af54ce31c898"
+  url "https://github.com/omarhoumz/agentic/releases/download/v0.1.1/agentic-0.1.1.tar.gz"
+  sha256 "a5759ff7f808d401bd890e63a414c99c667c3a98c1b06641c37c6d7f4ea9100e"
   license "MIT"
 
   def install
