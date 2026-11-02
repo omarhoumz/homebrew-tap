@@ -1,9 +1,10 @@
 # omarhoumz/homebrew-tap
 
-Homebrew formulae for my projects.
+Homebrew formulae and casks for my projects.
 
 ```sh
 brew install omarhoumz/tap/portwho
+brew install --cask omarhoumz/tap/caffeine-watch
 ```
 
 ## Formulae here are generated, not written
@@ -22,3 +23,8 @@ It cannot loop — pushes made with `GITHUB_TOKEN` do not trigger workflows.
 
 Consequence: **do not hand-edit a formula here.** Fix it upstream in the project's
 `dist-workspace.toml`, or extend the patch script.
+
+## Casks are hand-written
+
+`Casks/*.rb` are not generated and the workflow ignores them. On a new release, bump
+`version` and `sha256` (`shasum -a 256 <zip>`) by hand.
