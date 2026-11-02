@@ -11,6 +11,9 @@ cask "caffeine-watch" do
 
   app "CaffeineWatch.app"
   binary "#{appdir}/CaffeineWatch.app/Contents/MacOS/CaffeineWatch", target: "caffeine-watch"
+  bash_completion "#{appdir}/CaffeineWatch.app/Contents/Resources/completions/caffeine-watch.bash"
+  zsh_completion "#{appdir}/CaffeineWatch.app/Contents/Resources/completions/_caffeine-watch"
+  fish_completion "#{appdir}/CaffeineWatch.app/Contents/Resources/completions/caffeine-watch.fish"
 
   # The app is ad-hoc signed, not notarized; without this Gatekeeper refuses the first launch.
   postflight do
