@@ -7,7 +7,7 @@ cask "caffeine-watch" do
   desc "Menu bar indicator and CLI for what is keeping your Mac awake"
   homepage "https://github.com/omarhoumz/caffeine-watch"
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "CaffeineWatch.app"
   binary "#{appdir}/CaffeineWatch.app/Contents/MacOS/CaffeineWatch", target: "caffeine-watch"
