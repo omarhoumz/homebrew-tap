@@ -4,7 +4,7 @@ cask "caffeine-watch" do
 
   url "https://github.com/omarhoumz/caffeine-watch/releases/download/v#{version}/CaffeineWatch.zip"
   name "CaffeineWatch"
-  desc "Menu bar indicator and CLI for what is keeping your Mac awake"
+  desc "Menu bar indicator and CLI for what is preventing sleep"
   homepage "https://github.com/omarhoumz/caffeine-watch"
 
   depends_on macos: :ventura
@@ -16,11 +16,11 @@ cask "caffeine-watch" do
   fish_completion "#{appdir}/CaffeineWatch.app/Contents/Resources/completions/caffeine-watch.fish"
 
   # The app is ad-hoc signed, not notarized; without this Gatekeeper refuses the first launch.
-  postflight do
-    system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{appdir}/CaffeineWatch.app"]
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{appdir}}/CaffeineWatch.app"]
   end
 
-  uninstall quit: "io.github.omarhoumz.caffeine-watch",
+  uninstall quit:       "io.github.omarhoumz.caffeine-watch",
             login_item: "CaffeineWatch"
 
   zap trash: "~/Library/Preferences/io.github.omarhoumz.caffeine-watch.plist"
