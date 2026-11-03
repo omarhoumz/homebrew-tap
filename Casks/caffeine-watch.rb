@@ -1,6 +1,6 @@
 cask "caffeine-watch" do
-  version "0.3.0"
-  sha256 "dc37ca1daab3133cc732977d8770a659f18856d8a60a31f9dac517ea21b84191"
+  version "0.3.1"
+  sha256 "9471807f8f1065b650a3caa842ac76ad48e2b613632cab01517210fa566abd88"
 
   url "https://github.com/omarhoumz/caffeine-watch/releases/download/v#{version}/CaffeineWatch.zip"
   name "CaffeineWatch"
